@@ -2,60 +2,64 @@ package main
 
 import (
 	"fmt"
-	"invest_proj/services"
+
+	"invest_proj/services/display"
+	"invest_proj/services/operations"
+	"invest_proj/services/searching"
+	"invest_proj/services/sorting"
+	"invest_proj/services/statistic"
 )
 
 func main() {
 	for {
-		fmt.Println("=== Menu ===") // menampilkan menu
-		fmt.Println("1. Tambah Investasi")
-		fmt.Println("2. Tampilkan Portofolio")
-		fmt.Println("3. Ubah Investasi")
-		fmt.Println("4. Hapus Investasi")
-		fmt.Println("5. Hitung Keuntungan / Kerugian")
-		fmt.Println("6. Cari Investasi berdasarkan Nama")
-		fmt.Println("7. Cari Investasi berdasarkan Jenis Aset")
-		fmt.Println("8. Cari Investasi dengan Return Tertinggi")
-		fmt.Println("9. Urutkan berdasarkan Nama")            // selection sort
-		fmt.Println("10. Urutkan berdasarkan Return")         // insertion sort
-		fmt.Println("11. Tampilkan Update Laporan Investasi") // menampilkan portofolio lengkap
-		fmt.Println("12. Tampilkan Riwayat Transaksi")
-		fmt.Println("13. Keluar") // menampilkan input menu
-		fmt.Print("Pilih Menu Aplikasi:")
+		fmt.Println("\n===================================")
+		fmt.Println("=== Aplikasi Manajemen Investasi ===")
+		fmt.Println("===================================")
+		fmt.Println("1.  Tambah Investasi")
+		fmt.Println("2.  Tampilkan Portofolio")
+		fmt.Println("3.  Ubah Investasi")
+		fmt.Println("4.  Hapus Investasi")
+		fmt.Println("5.  Hitung Keuntungan / Kerugian")
+		fmt.Println("6.  Cari Investasi berdasarkan Nama")
+		fmt.Println("7.  Cari Investasi berdasarkan Jenis Aset")
+		fmt.Println("8.  Urutkan berdasarkan Nama (A-Z)")
+		fmt.Println("9.  Urutkan berdasarkan Return (tinggi → rendah)")
+		fmt.Println("10. Tampilkan Update Laporan Portofolio")
+		fmt.Println("11. Tampilkan Statistik Investasi")
+		fmt.Println("12.  Keluar")
+		fmt.Print("Pilih Menu Aplikasi: ")
 
-		var menu int    // variabel untuk menampung input menu aplikasi
-		fmt.Scan(&menu) // menginput menu aplikasi
+		var menu int
+		fmt.Scan(&menu)
 
-		switch menu { // switch case untuk menampilkan menu aplikasi
+		switch menu {
 		case 1:
-			services.TambahInvestasi() // menampilkan menu tambah investasi
+			operations.TambahInvestasi()
 		case 2:
-			tampilkanInvestasi() // menampilkan menu tampilkan portofolio
+			display.TampilkanInvestasi()
 		case 3:
-			ubahInvestasi() // menampilkan menu ubah investasi
+			operations.UbahInvestasi()
 		case 4:
-			hapusInvestasi() // menampilkan menu hapus investasi
+			operations.HapusInvestasi()
 		case 5:
-			hitungKeuntungan() // menampilkan menu hitung keuntungan
+			operations.HitungKeuntungan()
 		case 6:
-			cariBerdasarkanNama() // menampilkan menu cari berdasarkan nama
+			searching.CariBerdasarkanNama()
 		case 7:
-			cariBerdasarkanJenis() // menampilkan menu cari berdasrkan Jenis
+			searching.CariBerdasarkanJenis()
 		case 8:
-			cariReturnTertinggi() // menampilkan menu cari berdasarkan return tertinggi
+			sorting.UrutkanNama()
 		case 9:
-			urutkanNama() // menampilkan menu urutkan berdasarkan return
+			sorting.UrutkanReturn()
 		case 10:
-			urutkanReturn() // menampilkan menu urutkan berdasarkan return
+			operations.UpdateLaporanInvestasi()
 		case 11:
-			updateLaporanInvestasi() // menampilkan menu tampilkan portofolio lengkap
-		case 12:
-			riwayatTransaksi()
+			statistic.TampilkanStatistikInvestasi()
 		case 0:
-			fmt.Println("Hallo, terima kasih telah menggunakan Aplikasi Manajemen Investasi Sederhana !")
-			return // mengakhiri aplikasi
-		default: // default case untuk menu yang tidak ada
-			fmt.Print("Menu tidak tersedia. Silakan pilih menu yang tersedia.\n\n") // menampilkan pesan menu tidak tersedia
+			fmt.Println("\nHallo, terima kasih telah menggunakan Aplikasi Manajemen Investasi Sederhana ! Sampai jumpa.\n")
+			return
+		default:
+			fmt.Println("Menu tidak tersedia. Silakan pilih menu yang sesuai.")
 		}
 	}
 }
