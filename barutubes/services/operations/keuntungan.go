@@ -5,24 +5,24 @@ import (
 	"invest_proj/models"
 )
 
-func hitungKeuntungan() {
-	if len(models.Portofolio) == 0 { // cek apakah portofolio kosong
+func HitungKeuntungan() {
+	if models.JumlahData == 0 {
 		fmt.Println("Belum ada investasi.")
 		return
 	}
 
 	fmt.Println("=== Hitung Keuntungan / Kerugian ===")
-	for _, invest := range models.Portofolio {
-		selisih := invest.HargaSekarang - invest.HargaBeli      // menghitung selisih harga
-		totalKeuntungan := selisih * float64(invest.JumlahUnit) // menghitung total keuntungan
+	for i := 0; i < models.JumlahData; i++ {
+		invest := models.Portofolio[i]
+		selisih := invest.HargaSekarang - invest.HargaBeli
+		totalKeuntungan := selisih * float64(invest.JumlahUnit)
 
 		if selisih > 0 {
-			fmt.Printf("Yeay, Selamat Kamu Mendapatkan Keuntungan dari %s sebesar : Rp %.2f\n", invest.NamaAset, totalKeuntungan)
+			fmt.Printf("Keuntungan dari %s sebesar: Rp %.2f\n", invest.NamaAset, totalKeuntungan)
 		} else if selisih < 0 {
-			fmt.Printf("Yah, Jangan Bersedih Terdapat Kerugian dari %s : Rp %.2f\n", invest.NamaAset, -totalKeuntungan) // menampilkan pesan kerugian
+			fmt.Printf("Kerugian dari %s sebesar: Rp %.2f\n", invest.NamaAset, -totalKeuntungan)
 		} else {
-			fmt.Printf("Tidak ada keuntungan atau kerugian dari %s\n", invest.NamaAset) // menampilkan pesan tidak ada keuntungan atau kerugian
+			fmt.Printf("Tidak ada keuntungan atau kerugian dari %s\n", invest.NamaAset)
 		}
-		models.hitungKeuntungan()
 	}
 }
