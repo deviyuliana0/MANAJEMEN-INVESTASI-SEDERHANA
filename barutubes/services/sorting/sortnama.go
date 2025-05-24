@@ -2,11 +2,11 @@ package sorting
 
 import (
 	"fmt"
-	"proj_invest/models"
+	"invest_proj/models"
 )
 
-func urutkanNama() { // Selection Sort
-	n := len(models.Portofolio)
+func UrutkanNama() { // Selection Sort ascending A-Z
+	n := models.JumlahData
 	for i := 0; i < n-1; i++ {
 		minIndex := i
 		for j := i + 1; j < n; j++ {
@@ -14,9 +14,7 @@ func urutkanNama() { // Selection Sort
 				minIndex = j
 			}
 		}
-
 		models.Portofolio[i], models.Portofolio[minIndex] = models.Portofolio[minIndex], models.Portofolio[i]
 	}
-	models.urutkanNama()
-	fmt.Println("Data berhasil diurutkan berdasarkan nama investasi.")
+	fmt.Println("Data berhasil diurutkan berdasarkan nama aset.")
 }
