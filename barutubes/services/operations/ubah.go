@@ -5,39 +5,38 @@ import (
 	"invest_proj/models"
 )
 
-func ubahInvestasi() {
-	if len(models.Portofolio) == 0 { // cek apakah portofolio kosong
-		fmt.Println("Belum ada data untuk diubah")
+func UbahInvestasi() {
+	if models.JumlahData == 0 {
+		fmt.Println("Belum ada data untuk diubah.")
 		return
 	}
 
+	fmt.Printf("Pilih nomor data Investasi yang ingin diubah (1 - %d): ", models.JumlahData)
 	var index int
-	fmt.Print("Pilih nomor data Investasi yang ingin diubah:")
 	fmt.Scan(&index)
 
-	if index < 1 || index > len(models.Portofolio) { // cek apakah index valid
-		fmt.Println("Index tidak valid")
+	if index < 1 || index > models.JumlahData {
+		fmt.Println("Index tidak valid.")
 		return
 	}
 
-	i := index - 1 // mengubah index menjadi indeks array
-	fmt.Println("Input data baru:")
+	i := index - 1
+	fmt.Println("=== Masukkan Data Baru ===")
 
-	fmt.Print("Nama Aset	:")
-	fmt.Scan(&models.Portofolio[i].NamaAset) // menginput nama aset
+	fmt.Print("Nama Aset       : ")
+	fmt.Scan(&models.Portofolio[i].NamaAset)
 
-	fmt.Print("Jenis Aset	:")
-	fmt.Scan(&models.Portofolio[i].JenisAset) // menginput jenis aset
+	fmt.Print("Jenis Aset      : ")
+	fmt.Scan(&models.Portofolio[i].JenisAset)
 
-	fmt.Print("Harga Beli	:")                 // menampilkan pesan harga beli
-	fmt.Scan(&models.Portofolio[i].HargaBeli) // menginput harga beli
+	fmt.Print("Harga Beli      : ")
+	fmt.Scan(&models.Portofolio[i].HargaBeli)
 
-	fmt.Print("Harga Sekarang	:")                 // menampilkan pesan harga sekarang
-	fmt.Scan(&models.Portofolio[i].HargaSekarang) // menginput harga sekarang
+	fmt.Print("Harga Sekarang  : ")
+	fmt.Scan(&models.Portofolio[i].HargaSekarang)
 
-	fmt.Print("Jumlah Unit	:")                 // menampilkan pesan jumlah unit
-	fmt.Scan(&models.Portofolio[i].JumlahUnit) // menginput jumlah unit
+	fmt.Print("Jumlah Unit     : ")
+	fmt.Scan(&models.Portofolio[i].JumlahUnit)
 
-	models.ubahInvestasi()
-	fmt.Print("Data berhasil diubah!\n\n")
+	fmt.Println("Data berhasil diubah!\n")
 }
